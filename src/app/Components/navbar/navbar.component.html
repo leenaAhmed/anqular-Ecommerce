@@ -30,10 +30,30 @@
                 <p *ngIf="isUserLogged" class="mt-2"> Hi! {{Username}}</p>
                 <a class="nav-link " [hidden]="isUserLogged" routerLink="/login" routerLinkActive="active">Login</a>
 
-                <a class="nav-link ms-5 me-5" [hidden]="!isUserLogged" routerLink="/logout" routerLinkActive="active"
-                    mat-raised-button mat-button color="warn" (click)="logout()">logout</a>
+                <a class="nav-link ms-5 me-5" type="button" [hidden]="!isUserLogged" routerLinkActive="active"
+                    data-bs-toggle="modal" data-bs-target="#staticBackdrop" color="warn">logout</a>
 
             </ul>
         </div>
     </div>
 </nav>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to logout
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" routerLink="/logout" (click)="logout()"
+                    data-bs-dismiss="modal">Understood</button>
+            </div>
+        </div>
+    </div>
+</div>
