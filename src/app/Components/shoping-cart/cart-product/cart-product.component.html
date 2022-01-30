@@ -1,0 +1,64 @@
+<div class="container mt-5">
+
+    <h2 class="text-center  mt-5 mb-5"> Cart Shoping</h2>
+
+
+    <div class="card mt-5">
+        <div class="card-header">
+            Header
+        </div>
+        <div class="card-body">
+            <table class="table ">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>amount</th>
+                        <th>total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of shopingCartItem; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>{{product.name}}</td>
+
+                        <td>
+                            {{product.quantity }}
+                        </td>
+                        <td>
+                            {{product.price | currency}}
+                        </td>
+                        <td>
+                            {{product.amount}}
+                        </td>
+                        <td>
+                            {{product.price * product.amount}}
+                        </td>
+                        <td><input #count type="number" (click)="updateQuantity(count.value , product.cartID)"
+                                class="form-control mb-2" min="1" max={{product.quantity}}></td>
+                        <td><button type="button" class="btn btn-danger" (click)="removeProduct(product.cartID)">
+                                <mat-icon>delete</mat-icon>
+
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer text-muted">
+
+
+            <div>
+
+                <button (click)="totalPrice()" class="btn btn-primary mx-4"> total Price </button>
+                <button (click)="placeOrder()" class="btn btn-primary"> placeOrder </button>
+                <div class="mt-3">
+                    totalPrice : {{orderTotalPrice}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

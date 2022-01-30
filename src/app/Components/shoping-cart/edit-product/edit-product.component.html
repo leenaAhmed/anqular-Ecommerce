@@ -1,0 +1,45 @@
+<h2 class="text-center text-primary mt-5">Edit Product</h2>
+
+<div class="col-md-6 offset-md-3 mt-5">
+
+
+    <div class="tm-edit-product-row">
+        <div class="" *ngIf="cartID">
+            <div class="form-group mb-3">
+                <label for="idproduct">Product ID
+                </label>
+                <input id="idproduct" name="name" [value]="addList.id" disabled class="form-control"
+                    [(ngModel)]="addList.id">
+            </div>
+            <div class="form-group mb-3">
+                <label for="Name">Product Name
+                </label>
+                <input id="Name" name="name" [value]="addList.Name" [(ngModel)]="addList.Name" type="text"
+                    class="form-control ">
+            </div>
+
+            <div class="row">
+                <div class="form-group mb-3 ">
+                    <label for="stock">Product price
+                    </label>
+                    <input [(ngModel)]="addList.Price" [value]="addList.Price" id="stock" name="stock" type="number"
+                        class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group mb-3 ">
+                    <label for="stock"> Product Units In Stock
+
+                    </label>
+                    <input [(ngModel)]="addList.Quantity" [value]="addList.Quantity" id="stock" name="stock"
+                        type="number" class="form-control ">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-12">
+            <button (click)="editProduct()" class="btn btn-primary">Update Product</button>
+        </div>
+
+    </div>
+</div>

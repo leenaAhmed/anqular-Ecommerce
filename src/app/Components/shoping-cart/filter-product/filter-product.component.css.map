@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,UAAU,CAAC;EACP,KAAK,EAAC,IAAK;EACX,MAAM,EAAC,IACX;CAAC",
+    "sources": [
+        "filter-product.component.scss"
+    ],
+    "names": [],
+    "file": "filter-product.component.css"
+}
