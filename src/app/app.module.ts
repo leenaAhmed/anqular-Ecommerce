@@ -22,6 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModelDilogComponent } from './Components/model-dilog/model-dilog.component';
+ 
 import { FooterComponent } from './Components/footer/footer.component';
 
 @NgModule({
@@ -53,6 +54,7 @@ import { FooterComponent } from './Components/footer/footer.component';
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
+ 
   ],
   providers: [],
   bootstrap: [AppComponent],

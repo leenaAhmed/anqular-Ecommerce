@@ -18,8 +18,7 @@ export class EditProductComponent implements OnInit {
     private productService: CartShopingService,
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder
-  ) {}
+   ) {}
 
   ngOnInit(): void {
     this.cartID = Number(this.activeRoute.snapshot.paramMap.get('addId'));

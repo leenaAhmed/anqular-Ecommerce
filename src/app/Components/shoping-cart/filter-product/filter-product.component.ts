@@ -35,9 +35,14 @@ export class FilterProductComponent implements OnInit {
       { id: 2, Name: 'clothing' },
       { id: 3, Name: 'jewelery' },
     ];
+    console.log(this.categoryList);
+    console.log('this.categoryList');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('this.categoryList');
+
+  }
   ngAfterViewInit(): void {
     console.log(this.ProductItems.productListFilter);
   }
