@@ -1,0 +1,139 @@
+<div class="container mt-5 ">
+  <div class="row">
+
+
+    <div class="col-9">
+      <h2 class="text-center mt-5"> Register Form </h2>
+      <form [formGroup]="formValue" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="mb-3 col-lg-6">
+            <label for="fName" class="form-label mt-5">FullName</label>
+            <input type="text" formControlName="fullName" class="form-control" id="fName" name="fullName"
+              [class.is-invalid]="fullName?.invalid" [class.is-valid]="fullName?.valid">
+            <div class="text-danger mt-3" [hidden]="fullName?.valid || fullName?.untouched">
+              <small *ngIf="fullName?.errors?.['required']">
+                Full Name is required
+              </small>
+              <small *ngIf="fullName?.errors?.['pattern']">
+                Full name must be 3 letters at least, dosn't match.
+              </small>
+            </div>
+          </div>
+          <div class="mb-3 col-lg-6">
+            <label for="email" class="form-label mt-5">Email</label>
+            <input type="text" formControlName="email" class="form-control" id="email" name="userEmail"
+              [class.is-invalid]="email?.invalid" [class.is-valid]="email?.valid">
+            <div class="text-danger mt-3" [hidden]="email?.valid || email?.untouched">
+              <small *ngIf="email?.errors?.['required']">
+                Email required
+              </small>
+              <small *ngIf="email?.errors?.['pattern']">
+                enterr correct email pattern
+              </small>
+              <small *ngIf="email?.errors?.['EmailExists']">
+                email is already exists.
+              </small>
+            </div>
+          </div>
+        </div>
+        <div formArrayName="phone" *ngFor=" let phone of phoneNumbers.controls; let i=index">
+          <div class="mb-3">
+            <label for="{{'uPhone-' + i}}" class="form-label">Phone No.{{i+1}}</label>
+            <input type="text" [class.is-invalid]="phone?.invalid" [class.is-valid]="phone?.valid" [formControlName]="i"
+              class="form-control" id="{{'uPhone-' + i}}" name="{{'userPhone-' + i}}">
+            <button type="button" [disabled]="!phone?.valid" class="btn btn-primary" (click)="addPhone($event)">
+              +
+            </button>
+            <button (click)="removePhone(i)" [hidden]="i==0" class="btn btn-danger">-</button>
+
+            <div class="text-danger mt-3" [hidden]="phone?.valid || phone?.untouched">
+              <small *ngIf="phone?.errors?.['required']">Please enter mobile number</small>
+              <small *ngIf="phone?.errors?.['pattern']">Mobile number is not 10 digit</small>
+            </div>
+          </div>
+        </div>
+
+        <div formGroupName="address" class="row">
+          <div class="mb-3 col-lg-4">
+            <label for="uCity" class="form-label">City</label>
+            <input type="text" formControlName="city" class="form-control" id="uCity" name="usercity"
+              [class.is-invalid]="city?.invalid" [class.is-valid]="city?.valid">
+            <div class="text-danger mt-3" [hidden]="city?.valid || city?.untouched">
+              <small *ngIf="city?.errors?.['required']">Please enter your city </small>
+            </div>
+          </div>
+
+          <div class="mb-3 col-lg-4">
+            <label for="uPostalCode" class="form-label">Postal Code</label>
+            <input type="number" formControlName="postalCode" class="form-control" id="uPostalCode"
+              name="userpostalcode" [class.is-invalid]="postalCode?.invalid" [class.is-valid]="postalCode?.valid">
+
+            <div class="text-danger mt-3" [hidden]="postalCode?.valid || postalCode?.untouched">
+              <small *ngIf="postalCode?.errors?.['required']">Please enter postalCode number</small>
+            </div>
+          </div>
+
+          <div class="mb-3 col-lg-4">
+            <label for="uStreet" class="form-label">Street</label>
+            <input type="text" formControlName="street" class="form-control" id="uStreet" name="userstreet"
+              [class.is-invalid]="street?.invalid" [class.is-valid]="street?.valid">
+            <div class="text-danger mt-3" [hidden]="street?.valid || street?.untouched">
+              <small *ngIf="street?.errors?.['required']">Please enter street </small>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-lg-6 mb-3">
+            <label for="password">Password</label>
+            <input formControlName="password" name="password" placeholder="plz " id="password" type="password"
+              class="form-control" [class.is-valid]="password?.valid" [class.is-invalid]="password?.invalid">
+
+            <div>
+              <small class="text-danger" *ngIf="password?.errors?.['required'] && password?.touched">Password is
+                required.</small>
+              <small class="text-danger" *ngIf="password?.errors?.['minLength'] && password?.touched"> Password must
+                be at least 6 characters </small>
+              <small class="text-danger" *ngIf="password?.errors?.['pattern'] && password?.touched"> Password must
+                be at least type digit and letter and some simple </small>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <label for="confirm_password">Confirm Password</label>
+            <input formControlName="confirmPassword" id="confirmpassword" [class.is-invalid]="confirmPassword?.invalid"
+              [class.is-valid]="confirmPassword?.valid" type="password" class="form-control">
+            <div class="text.danger" *ngIf="confirmPassword?.errors?.['required'] && confirmPassword?.touched">
+              Confirm Password is required
+            </div>
+            <div small class="text-danger" *ngIf="formValue?.errors?.['notMatchPassword']">
+              Confirm password must match password.
+            </div>
+
+          </div>
+        </div>
+        <div class="mb-5" role="group" aria-label="Basic radio toggle button group">
+          <input type="radio" class="btn-check me-5" formControlName="referral" name="referral" id="btnradio1"
+            autocomplete="off" value="SocialMedia" (change)="updateReferral()">
+          <label class="btn btn-outline-primary me-5" for="btnradio1"> Any Day</label>
+
+          <input type="radio" class="btn-check ms-5" formControlName="referral" name="referral" id="btnradio3"
+            autocomplete="off" value="other" (change)="updateReferral()">
+          <label class="btn btn-outline-primary" for="btnradio3">Spacific Day</label>
+        </div>
+
+        <div class="mb-3 ms-3" *ngIf="referral?.value=='other'">
+          <label for="rOther" class="form-label">Specify</label>
+          <input type="text" formControlName="referralOther" class="form-control" id="rOther" name="refOhter">
+        </div>
+
+
+        <button [disabled]="formValue.invalid" type="submit" class="btn btn-primary">Submit</button>
+
+      </form>
+    </div>
+  </div>
+
+
+
+</div>

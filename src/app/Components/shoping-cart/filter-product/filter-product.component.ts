@@ -8,6 +8,7 @@ import {
 import { ICateogray } from 'src/app/Models/icateogray';
 import { IProduct } from 'src/app/Models/iproduct';
 import { CartShopingService } from 'src/app/services/cart-shoping.service';
+import { CategoryService } from 'src/app/services/category/category.service';
 import { ICart } from 'src/app/ViewModels/icart';
 import { ProductListComponent } from '../product-list/product-list.component';
 @Component({
@@ -16,7 +17,7 @@ import { ProductListComponent } from '../product-list/product-list.component';
   styleUrls: ['./filter-product.component.scss'],
 })
 export class FilterProductComponent implements OnInit {
-  categoryList: ICateogray[];
+  categoryList: ICateogray[] = [];
   shopingCartItem: ICart[] = [];
   selectedId: number = 0;
   selectedPrice: number = 0;
@@ -29,19 +30,15 @@ export class FilterProductComponent implements OnInit {
 
   addToCart: any = [];
 
-  constructor(private CartService: CartShopingService) {
-    this.categoryList = [
-      { id: 1, Name: 'electronics' },
-      { id: 2, Name: 'clothing' },
-      { id: 3, Name: 'jewelery' },
-    ];
-    console.log(this.categoryList);
+  constructor(private categoryservice: CategoryService) {
     console.log('this.categoryList');
   }
 
   ngOnInit(): void {
     console.log('this.categoryList');
-
+    this.categoryservice.getAllCategory().subscribe((cat) => {
+      this.categoryList = cat;
+    });
   }
   ngAfterViewInit(): void {
     console.log(this.ProductItems.productListFilter);
@@ -49,7 +46,7 @@ export class FilterProductComponent implements OnInit {
 
   addfun(product: any) {
     this.shopingCartItem.push(product);
-    this.CartService.addToCart(product);
+    // this.CartService.addToCart(product);
     console.log(this.shopingCartItem);
   }
 

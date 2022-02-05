@@ -1,0 +1,25 @@
+import {
+  AsyncValidatorFn,
+  AbstractControl,
+  ValidationErrors,
+  AsyncValidator,
+} from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { UserService } from 'src/app/services/register/user.service';
+import { IUser } from '../../Models/iuser';
+
+export function checkEmailValidator(
+  userService: UserService
+): AsyncValidatorFn {
+  return (
+    control: AbstractControl
+  ): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+    return userService.checkEmail(control.value).pipe(
+      map((users: IUser[]) => {
+        console.log('exist');
+        return users && users.length > 0 ? { EmailExists: true } : null;
+      })
+    );
+  };
+}

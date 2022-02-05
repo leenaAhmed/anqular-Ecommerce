@@ -14,7 +14,16 @@ export class AuthenticationService {
   }
 
   login(userName: string, password: string) {
-    let usrToken = '123456789123456789';
+    const rand = () => {
+      return Math.random().toString(36).substr(2);
+    };
+
+    const token = () => {
+      return rand() + rand();
+    };
+
+    console.log(token());
+    let usrToken = token();
     this.isuserName = userName;
     localStorage.setItem('token', usrToken);
     localStorage.setItem('name', userName);

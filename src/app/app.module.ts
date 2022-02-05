@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,9 +24,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModelDilogComponent } from './Components/model-dilog/model-dilog.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { DailogExampleComponent } from './Components/shoping-cart/dailog-example/dailog-example.component';
+import { RegistertionComponent } from './Components/registertion/registertion.component';
  
-import { FooterComponent } from './Components/footer/footer.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,18 +46,23 @@ import { FooterComponent } from './Components/footer/footer.component';
     EditProductComponent,
     CartProductComponent,
     ModelDilogComponent,
-    FooterComponent,
+    DailogExampleComponent,
+    RegistertionComponent,
+   ],
+  entryComponents: [
+    DailogExampleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
- 
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

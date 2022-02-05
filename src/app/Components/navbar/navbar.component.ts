@@ -11,6 +11,7 @@ export class NavbarComponent implements OnInit {
   Username: string | null = localStorage.getItem('name');
   constructor(private AuthService: AuthenticationService) {
     this.isUserLogged = this.AuthService.isUserExist;
+     
   }
 
   ngOnInit(): void {

@@ -11,7 +11,10 @@ import { FilterProductComponent } from './Components/shoping-cart/filter-product
 import { ProductDetailsComponent } from './Components/shoping-cart/product-details/product-details.component';
 import { ProductListComponent } from './Components/shoping-cart/product-list/product-list.component';
 import { UserlogoutComponent } from './Components/userlogout/userlogout.component';
+import { RegistertionComponent } from './Components/registertion/registertion.component';
+
 import { AuthGuard } from './Gaurds/auth.guard';
+import { UserModule } from 'src/app/Components/profileModeul/user.module';
 const routes: Routes = [
   {
     path: '',
@@ -27,9 +30,17 @@ const routes: Routes = [
   },
   { path: 'addProduct', component: AddNewProductComponent },
   { path: 'products/:productId', component: ProductDetailsComponent },
-  { path: 'editproduct/:addId', component: EditProductComponent },
+  { path: 'editproduct', component: EditProductComponent },
+  { path: 'editproduct/:id', component: EditProductComponent },
+  { path: 'register', component: RegistertionComponent },
   { path: 'cart', component: CartProductComponent, canActivate: [AuthGuard] },
-
+  {
+    path: 'user',
+    loadChildren: () =>
+      import('src/app/Components/profileModeul/user.module').then(
+        (m) => m.UserModule
+      ),
+  },
   { path: 'logout', component: UserlogoutComponent },
 
   { path: 'login', component: LoginComponent },

@@ -3,15 +3,17 @@ import { Router } from '@angular/router';
 import { IProduct } from 'src/app/Models/iproduct';
 import { ICart } from 'src/app/ViewModels/icart';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DailogExampleComponent } from '../dailog-example/dailog-example.component';
 import { CartShopingService } from './../../../services/cart-shoping.service';
+import { ProductServicesService } from 'src/app/services/productService/product-services.service';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-  shopingCartItem: ICart;
+  shopingCartItem: ICart = {} as ICart;
   ProductObj: IProduct = {} as IProduct;
 
   @Input() selctedCategory: number = 0;
@@ -27,35 +29,41 @@ export class ProductListComponent implements OnInit {
   formValue!: FormGroup;
 
   constructor(
-    private CartService: CartShopingService,
+    private productService: ProductServicesService,
     private router: Router,
-    private formBuilder: FormBuilder
+    public dialog: MatDialog
   ) {
-    this.shopingCartItem = {
-      cartID: 0,
-      name: '',
-      quantity: 0,
-      price: 0,
-      amount: 0,
-      totalPrice: 0,
-    };
-
     this.time = new Date();
     this.selectedProduct = new EventEmitter<ICart>();
   }
   ngOnChanges(): void {
     // this.filterCategory()
-    this.productListFilter = this.CartService.filterByCategoryId(
-      this.selctedCategory
-    );
+    this.productService
+      .getProductByCategoryId(this.selctedCategory)
+      .subscribe((product) => {
+        this.productListFilter = product;
+      });
   }
   ngOnInit(): void {
-    this.productListFilter = this.CartService.getAllProducts();
+    this.productService.getAllProducts().subscribe((product) => {
+      this.productListFilter = product;
+    });
   }
 
+  openDialog(id: number) {
+    const dialogRef = this.dialog.open(DailogExampleComponent, {
+      data: { id: id },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  DeletProduct(id: number) {
+    this.productService.deleteProduct(id).subscribe((product) => {
+      console.log('Delet Product', id);
+    });
+  }
   opentoUpdate(index: any) {
- 
-
     this.showUpdate = true;
     this.showAdd = false;
     console.log(this.ProductObj);
@@ -69,7 +77,7 @@ export class ProductListComponent implements OnInit {
       amount: +count,
       totalPrice: 0,
     };
-
+    console.log(this.shopingCartItem);
     this.selectedProduct.emit(this.shopingCartItem);
   }
 }

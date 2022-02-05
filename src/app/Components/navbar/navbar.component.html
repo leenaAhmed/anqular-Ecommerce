@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Cart Shoping</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -28,6 +28,8 @@
             </ul>
             <ul class="d-flex">
                 <p *ngIf="isUserLogged" class="mt-2"> Hi! {{Username}}</p>
+                <a class="nav-link ms-5" type="button" routerLink="/register" routerLinkActive="active">Register</a>
+
                 <a class="nav-link " [hidden]="isUserLogged" routerLink="/login" routerLinkActive="active">Login</a>
 
                 <a class="nav-link ms-5 me-5" type="button" [hidden]="!isUserLogged" routerLinkActive="active"

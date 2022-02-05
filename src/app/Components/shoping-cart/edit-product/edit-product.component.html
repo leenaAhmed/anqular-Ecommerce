@@ -1,45 +1,70 @@
-<h2 class="text-center text-primary mt-5">Edit Product</h2>
-
+<h1 class="text-center text-primary mt-5" *ngIf="isAddMode">Add Product</h1>
+<h1 class="text-center text-primary mt-5" *ngIf="!isAddMode">Edit Product</h1>
 <div class="col-md-6 offset-md-3 mt-5">
 
-
+    {{prdForm.errors | json}}
     <div class="tm-edit-product-row">
-        <div class="" *ngIf="cartID">
-            <div class="form-group mb-3">
-                <label for="idproduct">Product ID
-                </label>
-                <input id="idproduct" name="name" [value]="addList.id" disabled class="form-control"
-                    [(ngModel)]="addList.id">
-            </div>
+        <form #prdForm="ngForm" class="form-inline" (ngSubmit)="onSubmit()">
             <div class="form-group mb-3">
                 <label for="Name">Product Name
                 </label>
-                <input id="Name" name="name" [value]="addList.Name" [(ngModel)]="addList.Name" type="text"
-                    class="form-control ">
+                <input #prdName="ngModel" id="Name" name="name" [value]="addList.Name" [(ngModel)]="addList.Name"
+                    type="text" class="form-control" required pattern="([a-zA-Z]{2,}\s[a-zA-Z]{1,}">
+            </div>
+            <div class="alert alert-warning" [hidden]="prdName.valid || prdName.untouched">
+                <small *ngIf="prdName.errors?.['required']"> Name is required</small>
+                <small *ngIf="prdName.errors?.['pattern']"> Name must be 3 letters at least</small>
+            </div>
+            <div class="form-group mb-3">
+                <label for="stock">Product price
+                </label>
+                <input #prdPrice="ngModel" [(ngModel)]="addList.Price" [value]="addList.Price" id="price" name="price"
+                    type="number" min="1" class="form-control" required>
+            </div>
+            <div class="alert alert-warning" [hidden]="prdPrice.valid || prdPrice.untouched">
+                <small *ngIf="prdPrice.errors?.['required']"> price is required</small>
+            </div>
+            <div class="form-group mb-3 ">
+                <label for="Image">Product Image
+                </label>
+                <input #prdImage="ngModel" [(ngModel)]="addList.Img" [value]="addList.Img" id="Image" name="Image"
+                    type="text" class="form-control" required>
+            </div>
+            <div class="alert alert-warning" [hidden]="prdImage.valid || prdImage.untouched">
+                <small *ngIf="prdImage.errors?.['required']"> Image is required</small>
+            </div>
+            <div class="form-group mb-3 ">
+                <label for="CateogryId">Product CateogryI
+                </label>
+                <select #prdcat="ngModel" class="form-select" name="CateogryId" id="CateogryId"
+                    [(ngModel)]="addList.CateogryId" [value]="addList.CateogryId" required>
+                    <option *ngFor="let category of categoryList" [value]="category.id">
+                        {{category.Name}}
+                    </option>
+                </select>
+
+            </div>
+            <div class="alert alert-warning" [hidden]="prdcat.valid || prdcat.untouched">
+                <small *ngIf="prdcat.errors?.['required']"> Category is required</small>
+            </div>
+            <div class="form-group mb-3 ">
+                <label for="stock"> Product Units In Stock
+                </label>
+                <input #prdQuantity="ngModel" [(ngModel)]="addList.Quantity" [value]="addList.Quantity" id="stock"
+                    name="stock" type="number" class="form-control" min="1" required>
+            </div>
+            <div class="alert alert-warning" [hidden]="prdQuantity.valid || prdQuantity.untouched">
+                <small *ngIf="prdQuantity.errors?.['required']"> Quantity is required</small>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" mat-stroked-button (click)="openSnackBar('product update' , 'Undo')"
+                    aria-label="Show an example snack-bar" *ngIf="!isAddMode" [disabled]="prdForm.invalid">Update
+                    Product</button>
+                <button class="btn btn-primary" mat-stroked-button (click)="openSnackBar('Add New Product' , 'Undo')"
+                    *ngIf="isAddMode" [disabled]="prdForm.invalid">Add Product</button>
             </div>
 
-            <div class="row">
-                <div class="form-group mb-3 ">
-                    <label for="stock">Product price
-                    </label>
-                    <input [(ngModel)]="addList.Price" [value]="addList.Price" id="stock" name="stock" type="number"
-                        class="form-control">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group mb-3 ">
-                    <label for="stock"> Product Units In Stock
-
-                    </label>
-                    <input [(ngModel)]="addList.Quantity" [value]="addList.Quantity" id="stock" name="stock"
-                        type="number" class="form-control" min="1" max={{addList.Quantity}}>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-12">
-            <button (click)="editProduct()" class="btn btn-primary">Update Product</button>
-        </div>
+        </form>
 
     </div>
 </div>
