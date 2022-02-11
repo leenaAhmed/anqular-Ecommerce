@@ -76,6 +76,7 @@ export class ProductListComponent implements OnInit {
       price: product.Price,
       amount: +count,
       totalPrice: 0,
+      id: 0,
     };
     console.log(this.shopingCartItem);
     this.selectedProduct.emit(this.shopingCartItem);

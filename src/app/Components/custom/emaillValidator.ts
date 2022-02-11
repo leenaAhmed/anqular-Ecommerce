@@ -14,7 +14,8 @@ export function checkEmailValidator(
 ): AsyncValidatorFn {
   return (
     control: AbstractControl
-  ): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+  ):  Observable<ValidationErrors | null> => {
+    console.log(control.value)
     return userService.checkEmail(control.value).pipe(
       map((users: IUser[]) => {
         console.log('exist');

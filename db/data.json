@@ -1,0 +1,236 @@
+{
+  "products": [
+    {
+      "id": 500,
+      "Name": "Lenovo labtop",
+      "Price": 100000000,
+      "Quantity": 4,
+      "Img": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
+      "CateogryId": "2"
+    },
+    {
+      "id": 700,
+      "Name": "nickles",
+      "Price": 3000,
+      "Quantity": 1,
+      "Img": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
+      "CateogryId": 3
+    },
+    {
+      "id": 800,
+      "Name": "t-shirt ",
+      "Price": 40.5,
+      "Quantity": 2,
+      "Img": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg",
+      "CateogryId": 2
+    },
+    {
+      "id": 900,
+      "Name": "Pants",
+      "Price": 50000,
+      "Quantity": 0,
+      "Img": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
+      "CateogryId": 2
+    },
+    {
+      "Name": "T-shirt",
+      "Price": 3,
+      "Img": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg ",
+      "CateogryId": "2",
+      "Quantity": 4,
+      "id": 903
+    },
+    {
+      "Name": "sand device",
+      "Price": 40,
+      "Img": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
+      "CateogryId": "1",
+      "Quantity": 6,
+      "id": 904
+    },
+    {
+      "Img": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      "Name": "clothes",
+      "Price": 11,
+      "CateogryId": "2",
+      "Quantity": 6,
+      "id": 905
+    },
+    {
+      "Img": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
+      "Name": "Ring jewelary",
+      "Price": 8,
+      "CateogryId": "3",
+      "Quantity": 4,
+      "id": 907
+    },
+    {
+      "Name": "LenovoThinkpad",
+      "Price": 8,
+      "Img": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
+      "CateogryId": "1",
+      "Quantity": 3,
+      "id": 908
+    },
+    {
+      "Name": "Apple MacBook ",
+      "Price": 10,
+      "Img": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg",
+      "CateogryId": "1",
+      "Quantity": 2,
+      "id": 909
+    },
+    {
+      "Img": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
+      "Name": "\"women's clothing",
+      "Price": 6,
+      "CateogryId": "2",
+      "Quantity": 3,
+      "id": 911
+    },
+    {
+      "Img": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
+      "Name": "Silver Dragon Station ",
+      "Price": 32,
+      "CateogryId": "3",
+      "Quantity": 4,
+      "id": 912
+    },
+    {
+      "Img": "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg",
+      "Price": 3,
+      "Name": "Pierced Owl Rose Gold",
+      "CateogryId": "3",
+      "Quantity": 2,
+      "id": 913
+    },
+    {
+      "Img": "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
+      "Name": "White Gold Plated",
+      "Price": 28,
+      "CateogryId": "3",
+      "Quantity": 1,
+      "id": 914
+    },
+    {
+      "Name": "Thick Warm Dress Long Sleeves",
+      "Price": 120,
+      "Img": "https://m.media-amazon.com/images/I/71QnrTXQaCL._SL1000_.jpg",
+      "CateogryId": "2",
+      "Quantity": 3,
+      "id": 915
+    },
+    {
+      "Img": "https://i.pinimg.com/550x/d3/74/e1/d374e1f2786bc4ea4facc753daaa9f47.jpg",
+      "Price": 130,
+      "CateogryId": "2",
+      "Quantity": 4,
+      "Name": "Frock Dress Designs",
+      "id": 916
+    },
+    {
+      "Img": "https://m.media-amazon.com/images/I/61N-1cjPc+L.jpg",
+      "Name": "Grid Shorts Set Clothing",
+      "CateogryId": "2",
+      "Price": 7,
+      "Quantity": 2,
+      "id": 917
+    },
+    {
+      "Img": "https://m.media-amazon.com/images/I/61nbj23WurL._UL1024_.jpg",
+      "Name": "Baby Toddler Girls Summer  ",
+      "Price": 712,
+      "CateogryId": "2",
+      "Quantity": 1,
+      "id": 918
+    }
+  ],
+  "category": [
+    {
+      "id": 1,
+      "Name": "electronics"
+    },
+    {
+      "id": 2,
+      "Name": "clothing"
+    },
+    {
+      "id": 3,
+      "Name": "jewelery"
+    }
+  ],
+  "user": [
+    {
+      "fullName": "leena",
+      "email": "leena@gmail.com",
+      "phone": [
+        "01028982565"
+      ],
+      "address": {
+        "city": "cairo",
+        "postalCode": 4,
+        "street": "st"
+      },
+      "password": "123456",
+      "confirmPassword": "123456",
+      "referral": "",
+      "referralOther": "",
+      "id": 3
+    },
+    {
+      "fullName": "leena",
+      "email": "leen98@gmail.com",
+      "phone": [
+        "01028298565"
+      ],
+      "address": {
+        "city": "cairo",
+        "postalCode": 22,
+        "street": "elh"
+      },
+      "password": "123456",
+      "confirmPassword": "123456",
+      "referral": "other",
+      "referralOther": "monday",
+      "id": 4
+    },
+    {
+      "fullName": "leena",
+      "email": "leen8@gmail.com",
+      "phone": [
+        "0102872897",
+        ""
+      ],
+      "address": {
+        "city": "cairo",
+        "postalCode": 22,
+        "street": "st"
+      },
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "referral": "other",
+      "referralOther": "starday",
+      "id": 5
+    }
+  ],
+  "cart": [
+    {
+      "name": "Apple MacBook ",
+      "cartID": 909,
+      "quantity": 2,
+      "price": 10,
+      "amount": 0,
+      "totalPrice": 0,
+      "id": 6
+    },
+    {
+      "name": "sand device",
+      "cartID": 904,
+      "quantity": 6,
+      "price": 40,
+      "amount": 0,
+      "totalPrice": 0,
+      "id": 7
+    }
+  ]
+}

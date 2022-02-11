@@ -9,6 +9,7 @@ import { IProduct } from 'src/app/Models/iproduct';
 import { ICart } from 'src/app/ViewModels/icart';
 import { ProductListComponent } from '../product-list/product-list.component';
 import { CartShopingService } from 'src/app/services/cart-shoping.service';
+import { CartService } from 'src/app/services/cartSevice/cart.service';
 @Component({
   selector: 'app-cart-product',
   templateUrl: './cart-product.component.html',
@@ -21,14 +22,18 @@ export class CartProductComponent implements OnInit, AfterViewInit {
   @Input() orderTotalPrice: number = 0;
   @ViewChild(ProductListComponent, { static: true })
   ProductItems!: ProductListComponent;
+  shopingCartItem: ICart[] = [];
 
-  shopingCartItem = this.CartService.getProduct();
-
-  constructor(private CartService: CartShopingService) {
-    console.log(this.shopingCartItem);
+  constructor(private CartService: CartService) {
+    // console.log(this.shopingCartItem);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.CartService.getAllCarts().subscribe((data) => {
+      this.shopingCartItem = data;
+    });
+  }
+
   ngAfterViewInit(): void {
     console.log(this.ProductItems);
   }
@@ -40,13 +45,14 @@ export class CartProductComponent implements OnInit, AfterViewInit {
 
     console.log(result);
   }
-  removeProduct(idProduct: number) {
-    console.log('removed', idProduct);
-    if (idProduct) {
-      this.shopingCartItem = this.shopingCartItem.filter((product) => {
-        product.cartID == idProduct;
-      });
-    }
+  removeProduct(id: number) {
+    console.log('removed', id);
+    this.CartService.deleteCart(id).subscribe((product) => {
+      console.log('removed', product);
+    });
+    // if (id) {
+    //   this.shopingCartItem = this.shopingCartItem.slice(id);
+    // }
   }
 
   totalPrice() {

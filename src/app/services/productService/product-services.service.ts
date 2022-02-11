@@ -1,4 +1,12 @@
-import { catchError, map, Observable, retry, throwError } from 'rxjs';
+import {
+  catchError,
+  flatMap,
+  map,
+  Observable,
+  retry,
+  throwError,
+  toArray,
+} from 'rxjs';
 import {
   HttpClient,
   HttpErrorResponse,
@@ -48,18 +56,21 @@ export class ProductServicesService {
       .get<IProduct>(`${environment.URL}/products/${id}`)
       .pipe(retry(1), catchError(this.handleError));
   }
-
-  getAddNewProduct(product: IProduct): Observable<IProduct[]> {
+  getProductIDs(): any {
+    let ids = this.getAllProducts().forEach((product) => product);
+    return ids;
+  }
+  getAddNewProduct(product: IProduct): Observable<IProduct> {
     return this.http
-      .post<IProduct[]>(
+      .post<IProduct>(
         `${environment.URL}/products`,
         JSON.stringify(product),
         this.httpOption
       )
       .pipe(retry(1), catchError(this.handleError));
   }
-  deleteProduct(id: number): Observable<IProduct[]> {
-    return this.http.delete<IProduct[]>(
+  deleteProduct(id: number): Observable<IProduct> {
+    return this.http.delete<IProduct>(
       `${environment.URL}/products/${id}`,
       this.httpOption
     );

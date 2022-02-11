@@ -80,12 +80,12 @@ export class CartShopingService {
     }
   }
 
-  getProductListById(productId: number): IProduct {
+  getProductListById(productId: number): IProduct | null {
     let findSingleProduct = this.productList.find(
       (item) => item.id == productId
     );
 
-    return findSingleProduct ? findSingleProduct : ({} as IProduct);
+    return findSingleProduct ? findSingleProduct : null;
   }
 
   getProductIDs(): number[] {

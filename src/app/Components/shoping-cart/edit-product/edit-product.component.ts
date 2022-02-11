@@ -66,9 +66,15 @@ export class EditProductComponent implements OnInit {
   }
 
   addProduct() {
-    this.productService.getAddNewProduct(this.addList).subscribe((newprd) => {
-      this.router.navigateByUrl('/products');
-    });
+
+
+    const observer={
+      next: (prd:IProduct) => {
+          this.router.navigateByUrl('/products');
+      },
+      error: (err:Error)=>{alert(err.message)}
+    }
+    this.productService.getAddNewProduct(this.addList).subscribe(observer)
   }
 
   UpdateProduct() {

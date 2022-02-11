@@ -1,8 +1,10 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { map } from 'rxjs';
 import { IProduct } from 'src/app/Models/iproduct';
-import { CartShopingService } from 'src/app/services/cart-shoping.service';
+// import { CartShopingService } from 'src/app/services/cart-shoping.service';
+import { ProductServicesService } from 'src/app/services/productService/product-services.service';
 
 @Component({
   selector: 'app-product-details',
@@ -12,50 +14,58 @@ import { CartShopingService } from 'src/app/services/cart-shoping.service';
 export class ProductDetailsComponent implements OnInit {
   cartID: number = 0;
   productsList?: IProduct | null;
-  productdetails: number[] = [];
+  productlistIds: number[] = [];
+
   constructor(
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private CartService: CartShopingService,
+    private CartService: ProductServicesService,
     private location: Location
   ) {}
 
   ngOnInit(): void {
-    this.productdetails = this.CartService.getProductIDs();
-
+    // this.productdetails = this.CartService.getProductIDs();
     this.activeRoute.paramMap.subscribe((paramMap) => {
       this.cartID = Number(paramMap.get('productId'));
-      this.productsList = this.CartService.getProductListById(this.cartID);
     });
 
-    // this.cartID = Number(
-    //   this.activeRoute.snapshot.paramMap.get('productId')
-    // );
-    // this.products = this.CartService.getProductListById(this.cartID);
-
-    console.log(this.productsList);
-    console.log(this.cartID);
-    console.log(this.productsList);
+    this.CartService.getProductById(this.cartID).subscribe((product) => {
+      this.productsList = product;
+    });
+    this.CartService.getProductIDs().subscribe((productIDs: number[]) => {
+      this.productlistIds = productIDs;
+    });
+    console.log('list', this.productlistIds);
+    console.log('id', this.cartID);
   }
+
+  // loadProductDetails(productID){
+  //   this.CartService.getProductById(productID).subscribe(product => {
+  //     this.productsList = product;
+  //   });
+  // }
   backForword() {
     this.location.back();
   }
   nextProduct() {
-    let next = this.productdetails.findIndex((elem) => elem == this.cartID);
+    let next = this.productlistIds.findIndex((elem) => elem == this.cartID);
+    console.log('nextProduct', next);
     let nextId;
-    if (next < this.productdetails.length) {
-      nextId = this.productdetails[next + 1];
+    if (next < this.productlistIds.length) {
+      nextId = this.productlistIds[next + 1];
       this.router.navigate(['/products', nextId]);
     }
+    console.log('nextProduct', nextId);
+
     console.log(next);
     console.log(nextId);
   }
 
   privousProducts() {
-    let privous = this.productdetails.findIndex((elem) => elem == this.cartID);
+    let privous = this.productlistIds.findIndex((elem) => elem == this.cartID);
     let privousId;
     if (privous > 0) {
-      privousId = this.productdetails[privous - 1];
+      privousId = this.productlistIds[privous - 1];
       this.router.navigate(['/products', privousId]);
     }
   }

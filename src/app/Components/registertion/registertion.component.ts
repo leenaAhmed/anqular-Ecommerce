@@ -42,12 +42,12 @@ export class RegistertionComponent implements OnInit {
         email: [
           '',
           [Validators.required, Validators.pattern(this.emailPattern)],
+          [checkEmailValidator(this.userService)],
         ],
         phone: formBuilder.array([
           this.formBuilder.control('', [
             Validators.required,
             Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
-            checkEmailValidator(this.userService),
           ]),
         ]),
         address: formBuilder.group({
@@ -103,8 +103,8 @@ export class RegistertionComponent implements OnInit {
   get phoneNumbers() {
     return this.formValue.get('phone') as FormArray;
   }
-  get phone() {
-    return this.formValue.get('phone');
+  get mobile() {
+    return this.formValue.get('mobile');
   }
   get city() {
     return this.formValue.get('address.city');

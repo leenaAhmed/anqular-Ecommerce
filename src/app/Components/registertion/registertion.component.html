@@ -1,9 +1,7 @@
 <div class="container mt-5 ">
   <div class="row">
-
-
-    <div class="col-9">
-      <h2 class="text-center mt-5"> Register Form </h2>
+    <div class="col-9 offset-md-2">
+      <h2 class="text-center mt-5 text-primary"> Register Form </h2>
       <form [formGroup]="formValue" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="mb-3 col-lg-6">
@@ -31,7 +29,7 @@
                 enterr correct email pattern
               </small>
               <small *ngIf="email?.errors?.['EmailExists']">
-                email is already exists.
+                email already exists.
               </small>
             </div>
           </div>
@@ -41,7 +39,8 @@
             <label for="{{'uPhone-' + i}}" class="form-label">Phone No.{{i+1}}</label>
             <input type="text" [class.is-invalid]="phone?.invalid" [class.is-valid]="phone?.valid" [formControlName]="i"
               class="form-control" id="{{'uPhone-' + i}}" name="{{'userPhone-' + i}}">
-            <button type="button" [disabled]="!phone?.valid" class="btn btn-primary" (click)="addPhone($event)">
+            <button type="button" [disabled]="!phone?.valid" class="btn btn-primary" 
+            (click)="addPhone($event)">
               +
             </button>
             <button (click)="removePhone(i)" [hidden]="i==0" class="btn btn-danger">-</button>
