@@ -1,7 +1,7 @@
 <h2 class="text-center"> Product List</h2>
-<button class="btn btn-primary" routerLink='/editproduct'> Add New Product </button>
+<button class="btn btn-primary" routerLink='/editproduct' [hidden]="!isUserLogged"> Add New Product </button>
 <div class="row mt-5">
-    <div class="col-4 mt-5" *ngFor="let product of productListFilter ; let i = index">
+    <div class="col-4 mt-5" *ngFor="let product of productListFilter  ; let i = index">
         <div class="card shadow-sm">
             <img [src]="product.Img" class="imageproduct">
 
@@ -11,24 +11,25 @@
                         <a class="card-text text-dark mb-3 pb-3" [routerLink]="['/products', product.id]">
                             {{ product.Name }}
                         </a>
-                        <a type="button" class="btn btn-sm  " [routerLink]="['/editproduct', product.id]">
+                        <a type="button" class="btn btn-sm  " [hidden]="!isUserLogged"
+                            [routerLink]="['/editproduct', product.id]">
                             <mat-icon>edit</mat-icon>
                         </a>
                     </div>
-                    <a type="button" class="btn" mat-button (click)="openDialog(product.id)">
+                    <a type="button" class="btn" [hidden]="!isUserLogged" mat-button (click)="openDialog(product.id)">
                         <mat-icon>clear</mat-icon>
 
                     </a>
                 </div>
 
 
-                <input #itemsCount type="number" class="form-control mb-2 mt-3 " min="1" max={{product.Quantity}} />
+                <!-- <input #itemsCount type="number" class="form-control mb-2 mt-3 " min="1" max={{product.Quantity}} /> -->
 
                 <p> {{product.Price | currency :"USD" : 'symbol'}}</p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-danger"
-                            (click)="BuyProduct(product , itemsCount.value)">Add to cart</button>
+                        <button type="button" class="btn btn-sm btn-danger" [disabled]="product.Quantity==0"
+                            (click)="BuyProduct(product )">Add to cart</button>
 
                     </div>
 
@@ -43,4 +44,4 @@
         </div>
 
     </div>
-</div> 
+</div>

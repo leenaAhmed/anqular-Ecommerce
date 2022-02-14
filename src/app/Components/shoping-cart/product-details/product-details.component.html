@@ -14,10 +14,12 @@
                 <p> {{productsList?.Price | currency :"USD" : 'symbol'}}</p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                        <button type="button" (click)="nextProduct()" class="btn btn-sm  ">
+                        <button type="button" [disabled]="cartID == productlistIds[0]" (click)="privousProducts()"
+                            class="btn btn-sm  ">
                             <mat-icon>keyboard_arrow_left</mat-icon>
                         </button>
-                        <button type="button" (click)="privousProducts()" class="btn btn-sm ">
+                        <button type="button" [disabled]="cartID == productlistIds[productlistIds.length-1]"
+                          (click)="nextProduct()" class="btn btn-sm ">
                             <mat-icon>keyboard_arrow_right</mat-icon>
                         </button>
 

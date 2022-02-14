@@ -18,22 +18,27 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="active" routerLink="/user/editProfile">editProfile</a>
                 </li>
-                <li class="nav-item">
+
+                <li class="nav-item position-relative">
                     <a class="nav-link " routerLinkActive="active" routerLink="/cart">
-
-                        <i class="material-icons">shopping_cart</i>
-
+                        <span class="navbar-text h3">
+                            <i class="material-icons">shopping_cart</i>
+                        </span>
+                        <span class="badge rounded-pill bg-danger position-absolute top-0 ms-1">{{totalItem}}</span>
                     </a>
 
-
-
                 </li>
-
+                <div class="form-group ms-5">
+                    <input type="text" class="form-control" [(ngModel)]="searchTerm" (keyup)="search($event)"
+                        placeholder="search products">
+                </div>
+                <span class="fas fa-search search-icon"></span>
 
             </ul>
             <ul class="d-flex">
                 <p *ngIf="isUserLogged" class="mt-2"> Hi! {{Username}}</p>
-                <a class="nav-link ms-5" type="button" routerLink="/register" routerLinkActive="active">Register</a>
+                <a class="nav-link ms-5" type="button" routerLink="/register" [hidden]="isUserLogged"
+                    routerLinkActive="active">Register</a>
 
                 <a class="nav-link " [hidden]="isUserLogged" routerLink="/login" routerLinkActive="active">Login</a>
 
@@ -58,8 +63,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" routerLink="/logout" (click)="logout()"
-                    data-bs-dismiss="modal">Understood</button>
+                <button type="button" class="btn btn-primary" routerLink="/home" (click)="logout()"
+                    data-bs-dismiss="modal">yes</button>
             </div>
         </div>
     </div>

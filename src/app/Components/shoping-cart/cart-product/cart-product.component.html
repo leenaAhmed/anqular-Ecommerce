@@ -38,7 +38,7 @@
                         </td>
                         <td><input #count type="number" (click)="updateQuantity(count.value , product.cartID)"
                                 class="form-control mb-2" min="1" max={{product.quantity}}></td>
-                        <td><button type="button" class="btn btn-danger" (click)="removeProduct(product.id)">Remove
+                        <td><button type="button" class="btn btn-danger" (click)="removeProduct(product.id, i + 1 )">Remove
                                 <mat-icon>delete</mat-icon>
 
                             </button>

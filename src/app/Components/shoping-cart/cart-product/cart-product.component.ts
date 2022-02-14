@@ -45,14 +45,14 @@ export class CartProductComponent implements OnInit, AfterViewInit {
 
     console.log(result);
   }
-  removeProduct(id: number) {
+  removeProduct(id: number , index:number) {
     console.log('removed', id);
     this.CartService.deleteCart(id).subscribe((product) => {
       console.log('removed', product);
     });
-    // if (id) {
-    //   this.shopingCartItem = this.shopingCartItem.slice(id);
-    // }
+    if (index) {
+      this.shopingCartItem = this.shopingCartItem.slice(index);
+    }
   }
 
   totalPrice() {
@@ -66,7 +66,7 @@ export class CartProductComponent implements OnInit, AfterViewInit {
     this.shopingCartItem.map((index) => {
       this.ProductItems.productListFilter.map((item) => {
         if (index.cartID == item.id) {
-          index.amount -= item.Quantity;
+          item.Quantity -= index.amount ;
         }
       });
     });

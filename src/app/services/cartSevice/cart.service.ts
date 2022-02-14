@@ -5,12 +5,22 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { catchError, Observable, retry, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  map,
+  Observable,
+  retry,
+  throwError,
+} from 'rxjs';
 import { ICart } from 'src/app/ViewModels/icart';
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
+  private productList = new BehaviorSubject<ICart[]>([]);
+  public search = new BehaviorSubject<string>('');
+
   httpOption;
 
   constructor(private http: HttpClient) {
@@ -29,6 +39,7 @@ export class CartService {
     }
     return throwError(() => new Error('something wrong  , please try again'));
   }
+
   getAllCarts(): Observable<ICart[]> {
     return this.http
       .get<ICart[]>(`${environment.URL}/cart`, this.httpOption)
@@ -44,8 +55,13 @@ export class CartService {
       .pipe(retry(1), catchError(this.handleError));
   }
   deleteCart(id: number): Observable<ICart> {
-    return this.http.delete<ICart>(`${environment.URL}/cart/${id}` ,
-    this.httpOption
+    return this.http.delete<ICart>(
+      `${environment.URL}/cart/${id}`,
+      this.httpOption
     );
+  }
+
+  getCartCount() {
+    return this.productList.asObservable();
   }
 }

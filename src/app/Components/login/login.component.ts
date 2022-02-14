@@ -19,12 +19,12 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isUserLogged = this.authService.isUserExist;
+    // this.isUserLogged = this.authService.isUserExist;
     this.authService.getloggedStatus().subscribe((status) => {
       this.isUserLogged = status;
     });
     this.activatedRoute.queryParams.subscribe(
-      (params) => (this.back = params[''])
+      (params) => (this.back = params['back'])
     );
   }
   login() {

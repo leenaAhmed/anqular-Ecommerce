@@ -82,7 +82,7 @@
     },
     {
       "Img": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
-      "Name": "\"women's clothing",
+      "Name": "women's clothing",
       "Price": 6,
       "CateogryId": "2",
       "Quantity": 3,
@@ -116,14 +116,14 @@
       "Name": "Thick Warm Dress Long Sleeves",
       "Price": 120,
       "Img": "https://m.media-amazon.com/images/I/71QnrTXQaCL._SL1000_.jpg",
-      "CateogryId": "2",
+      "CateogryId": "4",
       "Quantity": 3,
       "id": 915
     },
     {
       "Img": "https://i.pinimg.com/550x/d3/74/e1/d374e1f2786bc4ea4facc753daaa9f47.jpg",
       "Price": 130,
-      "CateogryId": "2",
+      "CateogryId": "4",
       "Quantity": 4,
       "Name": "Frock Dress Designs",
       "id": 916
@@ -131,7 +131,7 @@
     {
       "Img": "https://m.media-amazon.com/images/I/61N-1cjPc+L.jpg",
       "Name": "Grid Shorts Set Clothing",
-      "CateogryId": "2",
+      "CateogryId": "4",
       "Price": 7,
       "Quantity": 2,
       "id": 917
@@ -140,7 +140,7 @@
       "Img": "https://m.media-amazon.com/images/I/61nbj23WurL._UL1024_.jpg",
       "Name": "Baby Toddler Girls Summer  ",
       "Price": 712,
-      "CateogryId": "2",
+      "CateogryId": "4",
       "Quantity": 1,
       "id": 918
     }
@@ -152,11 +152,15 @@
     },
     {
       "id": 2,
-      "Name": "clothing"
+      "Name": "Woman clothes"
     },
     {
       "id": 3,
       "Name": "jewelery"
+    },
+    {
+      "id": 4,
+      "Name": "baby clothes"
     }
   ],
   "user": [
@@ -215,22 +219,13 @@
   ],
   "cart": [
     {
-      "name": "Apple MacBook ",
-      "cartID": 909,
-      "quantity": 2,
-      "price": 10,
-      "amount": 0,
+      "name": "nickles",
+      "cartID": 700,
+      "quantity": 1,
+      "price": 3000,
+      "amount": 1,
       "totalPrice": 0,
-      "id": 6
-    },
-    {
-      "name": "sand device",
-      "cartID": 904,
-      "quantity": 6,
-      "price": 40,
-      "amount": 0,
-      "totalPrice": 0,
-      "id": 7
+      "id": 8
     }
   ]
 }

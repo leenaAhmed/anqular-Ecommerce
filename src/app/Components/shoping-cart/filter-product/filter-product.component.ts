@@ -22,6 +22,8 @@ export class FilterProductComponent implements OnInit {
   shopingCartItem: ICart = {} as ICart;
   selectedId: number = 0;
   selectedPrice: number = 0;
+  searchKey: string = '';
+
   @Input() orderTotalPrice: number = 0;
   @ViewChild(ProductListComponent)
   ProductItems!: ProductListComponent;
@@ -42,6 +44,9 @@ export class FilterProductComponent implements OnInit {
     console.log('this.categoryList');
     this.categoryservice.getAllCategory().subscribe((cat) => {
       this.categoryList = cat;
+    });
+    this.cartService.search.subscribe((val: any) => {
+      this.searchKey = val;
     });
   }
   ngAfterViewInit(): void {

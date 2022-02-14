@@ -56,8 +56,11 @@ export class ProductServicesService {
       .get<IProduct>(`${environment.URL}/products/${id}`)
       .pipe(retry(1), catchError(this.handleError));
   }
-  getProductIDs(): any {
-    let ids = this.getAllProducts().forEach((product) => product);
+
+  getProductsID() {
+    let ids = this.http
+      .get<IProduct[]>(`${environment.URL}/products`)
+      .pipe(map((product) => product.map((product) => product.id)));
     return ids;
   }
   getAddNewProduct(product: IProduct): Observable<IProduct> {
@@ -77,7 +80,7 @@ export class ProductServicesService {
   }
   updateProductDetails(product: IProduct, id: number): Observable<IProduct[]> {
     return this.http
-      .put<IProduct[]>(
+      .patch<IProduct[]>(
         `${environment.URL}/products/${id}`,
         JSON.stringify(product),
         this.httpOption
