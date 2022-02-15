@@ -1,17 +1,16 @@
 <h2 class="text-center"> Product List</h2>
 <button class="btn btn-primary" routerLink='/editproduct' [hidden]="!isUserLogged"> Add New Product </button>
 <div class="row mt-5">
-    <div class="col-4 mt-5" *ngFor="let product of productListFilter  ; let i = index">
+    <div class="col-lg-4 col-md-2 mt-5" *ngFor="let product of productListFilter  ; let i = index">
         <div class="card shadow-sm">
             <img [src]="product.Img" class="imageproduct">
-
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div>
                         <a class="card-text text-dark mb-3 pb-3" [routerLink]="['/products', product.id]">
                             {{ product.Name }}
                         </a>
-                        <a type="button" class="btn btn-sm  " [hidden]="!isUserLogged"
+                        <a type="button" class="btn btn-sm" [hidden]="!isUserLogged"
                             [routerLink]="['/editproduct', product.id]">
                             <mat-icon>edit</mat-icon>
                         </a>
@@ -45,3 +44,17 @@
 
     </div>
 </div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end mt-5">
+        <li class="page-item " [class.disabled]="page==1">
+            <a class="page-link" (click)="prevPage()">Previous</a>
+        </li>
+        <li class="page-item" aria-current="page"><a class="page-link" href="#">{{page}}</a></li>
+
+
+        <li class="page-item">
+            <a class="page-link" (click)="nextPage()">Next</a>
+        </li>
+    </ul>
+</nav>

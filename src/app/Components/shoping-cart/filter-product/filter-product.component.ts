@@ -10,6 +10,7 @@ import { IProduct } from 'src/app/Models/iproduct';
 import { CartShopingService } from 'src/app/services/cart-shoping.service';
 import { CartService } from 'src/app/services/cartSevice/cart.service';
 import { CategoryService } from 'src/app/services/category/category.service';
+import { ProductServicesService } from 'src/app/services/productService/product-services.service';
 import { ICart } from 'src/app/ViewModels/icart';
 import { ProductListComponent } from '../product-list/product-list.component';
 @Component({
@@ -35,6 +36,7 @@ export class FilterProductComponent implements OnInit {
 
   constructor(
     private categoryservice: CategoryService,
+    private productService: ProductServicesService,
     private cartService: CartService
   ) {
     console.log('this.categoryList');

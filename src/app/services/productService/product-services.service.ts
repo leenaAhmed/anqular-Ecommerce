@@ -39,9 +39,9 @@ export class ProductServicesService {
     return throwError(() => new Error('something wrong  , please try again'));
   }
 
-  getAllProducts(): Observable<IProduct[]> {
+  getAllProducts(page: number): Observable<IProduct[]> {
     return this.http
-      .get<IProduct[]>(`${environment.URL}/products`)
+      .get<IProduct[]>(`${environment.URL}/products?_page=${page}`)
       .pipe(retry(2), catchError(this.handleError));
   }
 
@@ -86,5 +86,10 @@ export class ProductServicesService {
         this.httpOption
       )
       .pipe(retry(1), catchError(this.handleError));
+  }
+  paginateProduct(page: number): Observable<IProduct[]> {
+    return this.http
+      .get<IProduct[]>(`${environment.URL}/products?_page=${page}`)
+      .pipe(retry(2), catchError(this.handleError));
   }
 }

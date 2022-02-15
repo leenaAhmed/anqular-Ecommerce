@@ -18,12 +18,13 @@ import { ICart } from 'src/app/ViewModels/icart';
   providedIn: 'root',
 })
 export class CartService {
-  private productList = new BehaviorSubject<ICart[]>([]);
+  private productList: BehaviorSubject<ICart[]>;
   public search = new BehaviorSubject<string>('');
-
+  private listitems: any = [];
   httpOption;
 
   constructor(private http: HttpClient) {
+    this.productList = new BehaviorSubject<ICart[]>([]);
     this.httpOption = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -41,9 +42,14 @@ export class CartService {
   }
 
   getAllCarts(): Observable<ICart[]> {
-    return this.http
+    this.listitems = this.http
       .get<ICart[]>(`${environment.URL}/cart`, this.httpOption)
       .pipe(retry(1), catchError(this.handleError));
+    console.log('getAllCarts', this.listitems);
+    console.log('getCartCount', this.productList.asObservable());
+    console.log('setProfileObs', this.productList.next(this.listitems));
+
+    return this.listitems;
   }
   addToCart(product: ICart): Observable<ICart> {
     return this.http
@@ -61,7 +67,14 @@ export class CartService {
     );
   }
 
-  getCartCount() {
+  getCartCount(): Observable<ICart[]> {
+    console.log('getCartCount', this.productList);
+
     return this.productList.asObservable();
+  }
+  setProfileObs(cart: ICart[]) {
+    console.log('setProfileObs', this.productList.next(cart));
+
+    this.productList.next(cart);
   }
 }

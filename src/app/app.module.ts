@@ -27,7 +27,11 @@ import { ModelDilogComponent } from './Components/model-dilog/model-dilog.compon
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DailogExampleComponent } from './Components/shoping-cart/dailog-example/dailog-example.component';
 import { RegistertionComponent } from './Components/registertion/registertion.component';
- 
+
+import { environment } from '../environments/environment';
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,10 +52,8 @@ import { RegistertionComponent } from './Components/registertion/registertion.co
     ModelDilogComponent,
     DailogExampleComponent,
     RegistertionComponent,
-   ],
-  entryComponents: [
-    DailogExampleComponent
   ],
+  entryComponents: [DailogExampleComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -63,6 +65,8 @@ import { RegistertionComponent } from './Components/registertion/registertion.co
     MatButtonModule,
     MatDialogModule,
     MatSnackBarModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [],
   bootstrap: [AppComponent],

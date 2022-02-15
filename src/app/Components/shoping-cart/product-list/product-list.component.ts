@@ -31,7 +31,7 @@ export class ProductListComponent implements OnInit {
   showUpdate!: boolean;
   formValue!: FormGroup;
   isUserLogged: boolean;
-
+  page: number;
   constructor(
     private productService: ProductServicesService,
     private AuthService: AuthenticationService,
@@ -41,11 +41,12 @@ export class ProductListComponent implements OnInit {
     this.time = new Date();
     this.selectedProduct = new EventEmitter<ICart>();
     this.isUserLogged = this.AuthService.isUserExist;
+    this.page = 1;
   }
   ngOnChanges(): void {
     // this.filterCategory()
     if (this.selctedCategory == 0) {
-      this.productService.getAllProducts().subscribe((product) => {
+      this.productService.getAllProducts(this.page).subscribe((product) => {
         this.productListFilter = product;
       });
     } else {
@@ -57,7 +58,7 @@ export class ProductListComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    this.productService.getAllProducts().subscribe((product) => {
+    this.productService.getAllProducts(this.page).subscribe((product) => {
       this.productListFilter = product;
     });
     this.AuthService.getloggedStatus().subscribe((status) => {
@@ -66,6 +67,18 @@ export class ProductListComponent implements OnInit {
     // this.cartService.search.subscribe((val: any) => {
     //   this.searchKey = val;
     // });
+    this.nextPage();
+    this.prevPage();
+  }
+  nextPage() {
+    this.productService.getAllProducts(++this.page).subscribe((product) => {
+      this.productListFilter = product;
+    });
+  }
+  prevPage() {
+    this.productService.getAllProducts(--this.page).subscribe((product) => {
+      this.productListFilter = product;
+    });
   }
   filter(category: string) {
     this.productListFilter = this.productListFilter.filter((a: any) => {
@@ -82,6 +95,7 @@ export class ProductListComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+
   DeletProduct(id: number) {
     this.productService.deleteProduct(id).subscribe((product) => {
       console.log('Delet Product', id);

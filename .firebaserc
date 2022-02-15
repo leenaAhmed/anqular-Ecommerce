@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "socialapp-dbf93": {
+      "hosting": {
+        "CourseDemo": [
+          "socialapp-dbf93"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "socialapp-dbf93"
+  }
+}

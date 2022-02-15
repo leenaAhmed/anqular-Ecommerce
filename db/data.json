@@ -73,14 +73,6 @@
       "id": 908
     },
     {
-      "Name": "Apple MacBook ",
-      "Price": 10,
-      "Img": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg",
-      "CateogryId": "1",
-      "Quantity": 2,
-      "id": 909
-    },
-    {
       "Img": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
       "Name": "women's clothing",
       "Price": 6,
@@ -219,13 +211,31 @@
   ],
   "cart": [
     {
+      "name": "T-shirt",
+      "cartID": 903,
+      "quantity": 4,
+      "price": 3,
+      "amount": 1,
+      "totalPrice": 0,
+      "id": 9
+    },
+    {
       "name": "nickles",
       "cartID": 700,
       "quantity": 1,
       "price": 3000,
       "amount": 1,
       "totalPrice": 0,
-      "id": 8
+      "id": 10
+    },
+    {
+      "name": "nickles",
+      "cartID": 700,
+      "quantity": 1,
+      "price": 3000,
+      "amount": 1,
+      "totalPrice": 0,
+      "id": 11
     }
   ]
 }

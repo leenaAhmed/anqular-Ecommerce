@@ -10,6 +10,7 @@ import { CartService } from 'src/app/services/cartSevice/cart.service';
 })
 export class NavbarComponent implements OnInit {
   isUserLogged: boolean;
+  isOpen: boolean = false;
   public totalItem: number = 0;
   public searchTerm!: string;
   Username: string | null = localStorage.getItem('name');
@@ -38,5 +39,8 @@ export class NavbarComponent implements OnInit {
   logout(): void {
     this.AuthService.logout();
     this.isUserLogged = this.AuthService.isUserExist;
+  }
+  toggaleNavBar() {
+    this.isOpen=!this.isOpen
   }
 }
